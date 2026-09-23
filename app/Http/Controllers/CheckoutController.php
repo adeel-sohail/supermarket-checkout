@@ -11,7 +11,26 @@ class CheckoutController extends Controller
 {
     private const string CONFIG_FILE = 'pricing_rules';
 
-    public function checkout(Request $request): JsonResponse
+    public function checkoutPost(Request $request): JsonResponse
+    {
+
+        $pricingRulesConfig = config(self::CONFIG_FILE);
+        $pricingRules = new PricingRules($pricingRulesConfig);
+
+        $checkout = new Checkout($pricingRules);
+        $requestItems = $request->input('items');
+
+        foreach ($requestItems as $item) {
+            $checkout->scan($item);
+        }
+
+        $total = $checkout->total();
+        return response()->json([
+            'total' => $total
+        ]);
+    }
+
+    public function checkoutGet(): JsonResponse
     {
 
         $pricingRulesConfig = config(self::CONFIG_FILE);

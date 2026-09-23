@@ -5,4 +5,5 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/checkout', [CheckoutController::class, 'checkout']);
+Route::post('/checkout', [CheckoutController::class, 'checkoutPost']);
+Route::get('/checkout', [CheckoutController::class, 'checkoutGet']);

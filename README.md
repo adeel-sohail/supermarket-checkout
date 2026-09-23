@@ -18,14 +18,6 @@ Pricing rules are configured separately from the checkout logic in `config/prici
 ## Design
 
 The implementation keeps the checkout independent of specific products and pricing strategies.
-
-It uses:
-
-- **Strategy Pattern** to encapsulate different pricing calculations.
-- **Factory Pattern** to create the appropriate pricing strategy from the configured pricing rules.
-- **PricingRules** to manage the available pricing strategies and item lookup.
-- **Checkout** to track scanned items and calculate the total.
-
 This separation allows pricing behavior to evolve without placing product-specific pricing logic inside the checkout.
 
 ## API
