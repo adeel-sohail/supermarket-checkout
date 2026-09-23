@@ -34,6 +34,8 @@ Example request:
 }
 ```
 
+`GET /api/checkout`
+
 Example response:
 
 ```json
