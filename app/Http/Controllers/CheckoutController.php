@@ -2,29 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Checkout\Checkout;
-use App\Checkout\PricingRules;
+use App\Checkout\CheckoutService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
 {
-    private const string CONFIG_FILE = 'pricing_rules';
+    public function __construct(private readonly CheckoutService $checkoutService)
+    {
+    }
+
 
     public function checkoutPost(Request $request): JsonResponse
     {
+        $items = $request->input('items');
+        $total = $this->checkoutService->checkout($items);
 
-        $pricingRulesConfig = config(self::CONFIG_FILE);
-        $pricingRules = new PricingRules($pricingRulesConfig);
-
-        $checkout = new Checkout($pricingRules);
-        $requestItems = $request->input('items');
-
-        foreach ($requestItems as $item) {
-            $checkout->scan($item);
-        }
-
-        $total = $checkout->total();
         return response()->json([
             'total' => $total
         ]);
@@ -32,19 +25,15 @@ class CheckoutController extends Controller
 
     public function checkoutGet(): JsonResponse
     {
+        $items = [
+            'A',
+            'B',
+            'C',
+            'B',
+            'A'
+        ];
+        $total = $this->checkoutService->checkout($items);
 
-        $pricingRulesConfig = config(self::CONFIG_FILE);
-        $pricingRules = new PricingRules($pricingRulesConfig);
-
-        $checkout = new Checkout($pricingRules);
-
-        $checkout->scan('A');
-        $checkout->scan('B');
-        $checkout->scan('C');
-        $checkout->scan('B');
-        $checkout->scan('A');
-
-        $total = $checkout->total();
         return response()->json([
             'total' => $total
         ]);

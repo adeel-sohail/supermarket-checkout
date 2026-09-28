@@ -2,8 +2,6 @@
 
 namespace App\Checkout;
 
-use App\Interfaces\PricingRule;
-
 class UnitPricing implements PricingRule
 {
 

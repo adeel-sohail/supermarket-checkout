@@ -2,7 +2,6 @@
 
 namespace App\Checkout;
 
-use App\Interfaces\PricingRule;
 use InvalidArgumentException;
 
 class PricingRules
