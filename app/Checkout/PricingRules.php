@@ -10,10 +10,10 @@ class PricingRules
 
     public function __construct(array $pricingRules)
     {
-        $factory = new PricingRuleFactory();
+        $resolver = new PricingRuleResolver();
 
         foreach ($pricingRules as $item => $pricingRule) {
-            $this->rules[$item] = $factory->create($pricingRule);
+            $this->rules[$item] = $resolver->resolve($pricingRule);
         }
 
     }

@@ -2,9 +2,9 @@
 
 namespace App\Checkout;
 
-class PricingRuleFactory
+class PricingRuleResolver
 {
-    public function create(array $pricingRule): PricingRule
+    public function resolve(array $pricingRule): PricingRule
     {
         if (isset($pricingRule['special_price']) and isset($pricingRule['special_quantity'])) {
             return new SpecialPricing(

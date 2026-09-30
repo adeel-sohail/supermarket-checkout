@@ -6,7 +6,7 @@ class CheckoutService
 {
     private const string CONFIG_FILE = 'pricing_rules';
 
-    public function checkout($items): int
+    public function checkout(array $items): int
     {
         $pricingRulesConfig = config(self::CONFIG_FILE);
         $pricingRules = new PricingRules($pricingRulesConfig);

@@ -20,6 +20,12 @@ Pricing rules are configured separately from the checkout logic in `config/prici
 The implementation keeps the checkout independent of specific products and pricing strategies.
 This separation allows pricing behavior to evolve without placing product-specific pricing logic inside the checkout.
 
+### Architecture
+
+The following diagram shows the checkout workflow and the relationship between the main components:
+
+![Supermarket Checkout UML Diagram](docs/checkout-workflow.png)
+
 ## API
 
 ### Checkout

@@ -12,11 +12,6 @@ class SpecialPricing implements PricingRule
 
     }
 
-    /**
-     * @param int $quantity
-     * @return int
-     *
-     */
     public function calculate(int $quantity): int
     {
         $multiplier = intdiv($quantity, $this->specialQuantity);
